@@ -9,8 +9,13 @@ formEl.addEventListener("input", throttle(() => {
 
 const localStoregGet = JSON.parse(localStorage.getItem("feedback-form-state", JSON.stringify({email: email.value, message: message.value})));
 
-email.value = localStoregGet.email;
-message.value = localStoregGet.message;
+console.log(localStoregGet);
+if (localStoregGet === null){
+	return;
+} else {
+	email.value = localStoregGet.email;
+	message.value = localStoregGet.message;
+}
 
 formEl.addEventListener("submit", (event) => {
 	event.preventDefault();
