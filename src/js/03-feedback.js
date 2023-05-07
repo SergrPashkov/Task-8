@@ -7,16 +7,6 @@ formEl.addEventListener("input", throttle(() => {
 	localStorage.setItem("feedback-form-state", JSON.stringify({email: email.value, message: message.value}));
 }, 500));
 
-const localStoregGet = JSON.parse(localStorage.getItem("feedback-form-state", JSON.stringify({email: email.value, message: message.value})));
-
-console.log(localStoregGet);
-if (localStoregGet === null){
-	return;
-} else {
-	email.value = localStoregGet.email;
-	message.value = localStoregGet.message;
-}
-
 formEl.addEventListener("submit", (event) => {
 	event.preventDefault();
 	const {email, message } = event.currentTarget.elements;
@@ -24,3 +14,20 @@ formEl.addEventListener("submit", (event) => {
 		event.currentTarget.reset();
 		localStorage.clear();
 	});
+
+const localStoregGet = JSON.parse(localStorage.getItem("feedback-form-state", JSON.stringify({email: email.value, message: message.value})));
+
+function getLocalStoreg(){
+		email.value = localStoregGet.email;
+		message.value = localStoregGet.message;
+}
+
+	const load = () => {
+		try {
+			getLocalStoreg()
+		} catch (error) {
+			
+		}
+	};
+
+	load();
